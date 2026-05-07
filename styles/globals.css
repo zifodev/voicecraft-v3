@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bebas+Neue&display=swap');
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #060606; color: #ddd; font-family: 'DM Mono', monospace; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-thumb { background: #1e1e1e; border-radius: 2px; }
+input::placeholder, textarea::placeholder { color: #2a2a2a; }
+select { -webkit-appearance: none; appearance: none; }
+audio, video { border-radius: 8px; }
+audio { filter: invert(1) hue-rotate(180deg); width: 100%; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeUp { from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)} }
+@keyframes glow { 0%,100%{text-shadow:0 0 10px #00e5a060}50%{text-shadow:0 0 28px #00e5a0} }
+.fadeUp { animation: fadeUp .4s ease; }
+.drop-zone:hover { border-color: #00e5a0 !important; }
+.voice-row:hover { background: #0f0f0f !important; }
