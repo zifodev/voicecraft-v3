@@ -54,17 +54,25 @@ export default async function handler(req, res) {
     // Extract audio from video
     await extractAudio(videoPath, audioPath)
 
-    // Send to Groq Whisper
+      // Send to Groq Whisper
     const audioBuffer = fs.readFileSync(audioPath)
+    
+    // Create proper FormData for Node.js
+    const FormData = require('form-data')
     const formData = new FormData()
-    const blob = new Blob([audioBuffer], { type: 'audio/mpeg' })
-    formData.append('file', blob, 'audio.mp3')
+    formData.append('file', audioBuffer, {
+      filename: 'audio.mp3',
+      contentType: 'audio/mpeg'
+    })
     formData.append('model', 'whisper-large-v3')
     formData.append('response_format', 'json')
 
     const response = await fetch('https://api.groq.com/openai/v1/audio/transcriptions', {
       method: 'POST',
-      headers: { 'Authorization': `Bearer ${apiKey}` },
+      headers: { 
+        'Authorization': `Bearer ${apiKey}`,
+        ...formData.getHeaders()
+      },
       body: formData
     })
 
